@@ -249,6 +249,10 @@ A/B OTA specific options
   --security_patch_level
       Override the security patch level in target files
 
+  --backup <boolean>
+      Enable or disable the execution of backuptool.sh.
+      Disabled by default.
+
   --max_threads
       Specify max number of threads allowed when generating A/B OTA
 """
@@ -324,6 +328,7 @@ OPTIONS.enable_zucchini = True
 OPTIONS.enable_lz4diff = False
 OPTIONS.vabc_compression_param = None
 OPTIONS.security_patch_level = None
+OPTIONS.backuptool = False
 OPTIONS.max_threads = None
 
 
@@ -1199,6 +1204,8 @@ def main(argv):
       OPTIONS.vabc_compression_param = a.lower()
     elif o == "--security_patch_level":
       OPTIONS.security_patch_level = a
+    elif o == "--backup":
+      OPTIONS.backuptool = True
     elif o in ("--max_threads"):
       if a.isdigit():
         OPTIONS.max_threads = a
@@ -1256,6 +1263,7 @@ def main(argv):
                                  "enable_lz4diff=",
                                  "vabc_compression_param=",
                                  "security_patch_level=",
+                                 "backup=",
                                  "max_threads=",
                              ], extra_option_handler=option_handler)
   common.InitLogging()
