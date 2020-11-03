@@ -32,7 +32,6 @@ PRODUCT_PACKAGES += \
     messaging \
     PhotoTable \
     preinstalled-packages-platform-aosp-product.xml \
-    WallpaperPicker \
 
 # NFC:
 #   Provide a libnfc-nci.conf to GSI product
