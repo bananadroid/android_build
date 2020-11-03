@@ -33,5 +33,4 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.com.android.dataroaming=true \
 
 PRODUCT_PACKAGES += \
-    PhotoTable \
-    WallpaperPicker \
+    PhotoTable
