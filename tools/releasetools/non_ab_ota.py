@@ -223,7 +223,7 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
   banana_version = target_info.GetBuildProp("ro.modversion")
   android_version = target_info.GetBuildProp("ro.build.version.release")
   build_id = target_info.GetBuildProp("ro.build.id")
-  security_patch = target_info.GetBuildProp("ro.build.version.security_patch")
+  security_patch = target_info.GetBuildProp("ro.banana.build_security_patch")
   device = target_info.GetBuildProp("ro.banana.device")
 
   script.Print("                                            ");
