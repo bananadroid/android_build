@@ -549,30 +549,10 @@ def AddPartitionTable(output_zip):
   img.Write()
   bpt.Write()
 
-
-def AddCache(output_zip):
-  """Create an empty cache image and store it in output_zip."""
-
-  img = OutputFile(output_zip, OPTIONS.input_tmp, "IMAGES", "cache.img")
-  if os.path.exists(img.name):
-    logger.info("cache.img already exists; no need to rebuild...")
-    return
-
-  image_props = build_image.ImagePropFromGlobalDict(OPTIONS.info_dict, "cache")
-  # The build system has to explicitly request for cache.img.
-  if "fs_type" not in image_props:
-    return
-
-  logger.info("creating cache.img...")
-
   image_props["timestamp"] = FIXED_FILE_TIMESTAMP
 
   user_dir = common.MakeTempDir()
   build_image.BuildImage(user_dir, image_props, img.name)
-
-  common.CheckSize(img.name, "cache.img", OPTIONS.info_dict)
-  img.Write()
-
 
 def CheckAbOtaImages(output_zip, ab_partitions):
   """Checks that all the listed A/B partitions have their images available.
@@ -893,8 +873,6 @@ def AddImagesToTargetFiles(filename):
   if not OPTIONS.is_signing:
     banner("userdata")
     AddUserdata(output_zip)
-    banner("cache")
-    AddCache(output_zip)
 
   if OPTIONS.info_dict.get("board_bpt_enable") == "true":
     banner("partition-table")
